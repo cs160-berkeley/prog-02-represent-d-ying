@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Represent!</string>
+    <string name="welcome_text">Welcome to Represent!\n</string>
+    <string name="zip_text">Please enter a ZIP code</string>
+    <string name="cur_loc_text">Or use current location</string>
+    <string name="submit_zip">Find my reps!</string>
+    <string name="submit_cur_loc">Use my location!</string>
+    <string name="committees_header">Committees:</string>
+    <string name="bills_header">Recently Sponsored Bills:</string>
+</resources>

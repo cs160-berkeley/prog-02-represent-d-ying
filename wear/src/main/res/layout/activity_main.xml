@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#3333CC"
+    app:rectLayout="@layout/rect_activity_main"
+    app:roundLayout="@layout/round_activity_main"
+    tools:context="cs160.prog2.MainActivity"
+    tools:deviceIds="wear">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:textSize="32sp"
+        android:text="@string/app_name"/>
+
+    <android.support.wearable.view.GridViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>
