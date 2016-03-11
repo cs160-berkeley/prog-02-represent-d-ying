@@ -13,12 +13,10 @@ import java.util.List;
 
 public class GridPagerAdapter extends FragmentGridPagerAdapter {
 
-    private final Context mContext;
     private String[] data;
 
     public GridPagerAdapter(Context ctx, FragmentManager fm, String[] data) {
         super(fm);
-        mContext = ctx;
         this.data = data;
     }
 

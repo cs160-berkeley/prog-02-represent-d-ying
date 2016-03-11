@@ -20,11 +20,18 @@ public class RepFragment extends CardFragment {
         rep = this.getArguments().getString("REP");
         View root = inflater.inflate(R.layout.fragment_rep, container, false);
         if (rep != null) {
-            String[] repData = rep.split("_");
+            String[] repData = rep.split("~");
+            String partyString = "Independent";
+            if (repData[1].equals("D")) {
+                partyString = "Democrat";
+            } else if (repData[1].equals("R")) {
+                partyString = "Republican";
+            }
+
             name = (TextView) root.findViewById(R.id.rep_name);
             name.setText(repData[0]);
             party = (TextView) root.findViewById(R.id.rep_party);
-            party.setText(repData[1]);
+            party.setText(partyString);
 
             root.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -17,7 +17,7 @@ public class VoteFragment extends CardFragment{
         String votes = this.getArguments().getString("VOTE");
         View root = inflater.inflate(R.layout.fragment_vote, container, false);
         if (votes != null) {
-            String[] data = votes.split("_");
+            String[] data = votes.split("~");
             TextView title = (TextView) root.findViewById(R.id.title);
             title.setText(data[0]);
             TextView county = (TextView) root.findViewById(R.id.county);

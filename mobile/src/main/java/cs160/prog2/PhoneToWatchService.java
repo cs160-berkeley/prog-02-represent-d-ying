@@ -44,8 +44,7 @@ public class PhoneToWatchService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
             Bundle extras = intent.getExtras();
-            final String ZIP = extras.getString("ZIP");
-            final String repString = getReps(ZIP);
+            final String repString = extras.getString("REPS");
 
             new Thread(new Runnable() {
                 @Override
@@ -64,10 +63,6 @@ public class PhoneToWatchService extends Service {
     @Override //remember, all services need to implement an IBiner
     public IBinder onBind(Intent intent) {
         return null;
-    }
-
-    private String getReps(String ZIP) {
-        return "Barbara Boxer_Democrat^Diane Feinstien_Democrat^Barbara Lee_Democrat^2012 Presidential Vote_Alameda, CA_Obama: 78.69%_Romney: 18.12%";
     }
 
     private void sendMessage( final String path, final String text ) {

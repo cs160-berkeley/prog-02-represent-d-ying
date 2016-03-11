@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
     private float mAccel; // acceleration apart from gravity
     private float mAccelCurrent; // current acceleration including gravity
     private float mAccelLast; // last acceleration including gravity
-    private String reps;
+    private boolean shook = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
         Bundle extras = intent.getExtras();
 
         if (extras != null) {
-            reps = extras.getString("REPS");
+            String reps = extras.getString("REPS");
             String[] repsList = extractReps(reps);
 
             final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
@@ -57,24 +57,11 @@ public class MainActivity extends Activity {
             float delta = mAccelCurrent - mAccelLast;
             mAccel = mAccel * 0.9f + delta; // perform low-cut filter
 
-            if (mAccel > 2) {
-                Toast toast = Toast.makeText(getApplicationContext(), "(40.712784,-74.005941)", Toast.LENGTH_SHORT);
-                toast.show();
-
-                if (reps != null) {
-                    String[] repsList = extractReps(reps);
-                    String temp = repsList[1];
-                    repsList[1] = repsList[2];
-                    repsList[2] = temp;
-
-                    String updateReps = "^,40.712784,-74.005941";
-                    Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
-                    sendIntent.putExtra("REP", updateReps);
-                    startService(sendIntent);
-
-                    final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
-                    pager.setAdapter(new GridPagerAdapter(getBaseContext(), getFragmentManager(), repsList));
-                }
+            if (mAccel > 2 && !shook) {
+                shook = true;
+                Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
+                sendIntent.putExtra("REP", "UPDATE");
+                startService(sendIntent);
             }
         }
 
